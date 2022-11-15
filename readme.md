@@ -1,5 +1,4 @@
 # Project Name
-- Name (@username)
-- Name (@username)
-- Name (@username)
-- Name (@username)
+- Erich Carrasco (@eacarrasco)
+- Gift Olatunji (@giftolatunji)
+- John Clear (@LofiTurtle)
