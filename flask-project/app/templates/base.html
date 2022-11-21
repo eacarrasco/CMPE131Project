@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>My Website</title>
+	</head>
+	<body>
+		{% block myContent %}{% endblock %}
+		{% with flashes = get_flashed_messages() %}
+		{% if flashes %}
+			<ul>
+				{% for flash_message in flashes %}
+					<li> {{flash_message}} </li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% endwith %}
+	</body>
+</html>
