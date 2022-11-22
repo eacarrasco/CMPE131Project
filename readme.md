@@ -1,4 +1,4 @@
 # Project Name
-- Erich Carrasco (@eacarrasco)
-- Gift Olatunji (@giftolatunji)
-- John Clear (@LofiTurtle)
+Team Lead: Gift Olatunji (@giftolatunji)
+Erich Carrasco (@eacarrasco)
+John Clear (@LofiTurtle)
