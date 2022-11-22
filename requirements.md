@@ -23,9 +23,9 @@
 ## Use Cases
 
 1. User home page
-- **Pre-condition:** <can be a list or short description>
+- **Pre-condition:**
 
-- **Trigger:** <can be a list or short description>
+- **Trigger:**
 
 - **Primary Sequence:**
   
@@ -40,24 +40,24 @@
   9. 
   10. 
 
-- **Primary Postconditions:** <can be a list or short description> 
+- **Primary Postconditions:**
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. 
   2. 
   3. 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. 
   2. 
   3. 
 
 2. Send message to followers
-- **Pre-condition:** <can be a list or short description>
+- **Pre-condition:**
 
-- **Trigger:** <can be a list or short description>
+- **Trigger:**
 
 - **Primary Sequence:**
   
@@ -72,24 +72,24 @@
   9. 
   10. 
 
-- **Primary Postconditions:** <can be a list or short description> 
+- **Primary Postconditions:**
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. 
   2. 
   3. 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. 
   2. 
   3. 
 
 3. Like message
-- **Pre-condition:** <can be a list or short description> User is logged in and has a message.
+- **Pre-condition:**
 
-- **Trigger:** <can be a list or short description> User clicks on heart next to message.
+- **Trigger:**
 
 - **Primary Sequence:**
   
@@ -97,17 +97,18 @@
   2. User sends message or recieves message (See Use Case "Send message to followers")
   3. User clicks heart next to message
 
-- **Primary Postconditions:** <can be a list or short description> A message is liked.
+- **Primary Postconditions:** A message is liked.
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. User has no messages
+
     a. There will be no heart to click
 
 4. Follow User
-- **Pre-condition:** <can be a list or short description> User is logged in and has searched for a user.
+- **Pre-condition:** User is logged in and has searched for a user.
 
-- **Trigger:** <can be a list or short description> User clicks the Follow button on another user's homepage.
+- **Trigger:** User clicks the Follow button on another user's homepage.
 
 - **Primary Sequence:**
   
@@ -115,17 +116,18 @@
   2. User clicks on desired user and is directed to their homepage
   3. User clicks the Follow button on their homepage
 
-- **Primary Postconditions:** <can be a list or short description> User's following list is updated
+- **Primary Postconditions:** User's following list is updated
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:**
   
   1. Search for user that does not exist.
+
     a. A blank page is shown.
 
 5. Search for user
-- **Pre-condition:** <can be a list or short description>
+- **Pre-condition:** 
 
-- **Trigger:** <can be a list or short description>
+- **Trigger:** 
 
 - **Primary Sequence:**
   
@@ -140,24 +142,24 @@
   9. 
   10. 
 
-- **Primary Postconditions:** <can be a list or short description> 
+- **Primary Postconditions:** 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:** 
   
   1. 
   2. 
   3. 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:** 
   
   1. 
   2. 
   3. 
 
 6. Search messages
-- **Pre-condition:** <can be a list or short description>
+- **Pre-condition:** 
 
-- **Trigger:** <can be a list or short description>
+- **Trigger:** 
 
 - **Primary Sequence:**
   
@@ -172,15 +174,15 @@
   9. 
   10. 
 
-- **Primary Postconditions:** <can be a list or short description> 
+- **Primary Postconditions:** 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:** 
   
   1. 
   2. 
   3. 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
+- **Alternate Sequence:** 
   
   1. 
   2. 
