@@ -125,65 +125,38 @@
     a. A blank page is shown.
 
 5. Search for user
-- **Pre-condition:** 
+- **Pre-condition:** Viewing the splash screen or home page.
 
-- **Trigger:** 
-
-- **Primary Sequence:**
-  
-  1. 
-  2. 
-  3. 
-  4.  
-  5. 
-  6. 
-  7. 
-  8. 
-  9. 
-  10. 
-
-- **Primary Postconditions:** 
-
-- **Alternate Sequence:** 
-  
-  1. 
-  2. 
-  3. 
-
-- **Alternate Sequence:** 
-  
-  1. 
-  2. 
-  3. 
-
-6. Search messages
-- **Pre-condition:** 
-
-- **Trigger:** 
+- **Trigger:** User selects the search field.
 
 - **Primary Sequence:**
   
-  1. 
-  2. 
-  3. 
-  4.  
-  5. 
-  6. 
-  7. 
-  8. 
-  9. 
-  10. 
+  1. User inputs some text into the search box
+  2. User selects the “Search users” box from a radio menu (as opposed to the “search messages” box)
+  3. User selects the search button, or presses Enter on the keyboard
+  4. User is redirected to a page where profiles whose usernames contain the text sequence entered by the user are listed
 
-- **Primary Postconditions:** 
+- **Primary Postconditions:** System displays the list of search results.
 
-- **Alternate Sequence:** 
+- **Alternate Sequence:** The user enters text that does not match any username.
   
-  1. 
-  2. 
-  3. 
+  1. User is redirected to a page displaying an error message that no users were found
 
-- **Alternate Sequence:** 
+- **Alternate Sequence:** The user does not enter text before selecting search.
   
-  1. 
-  2. 
-  3. 
+  1. A popup appears, prompting the user to enter some text into the search field
+
+1. Slpash page
+- **Pre-condition:** User is not logged in.
+
+- **Trigger:** User visits the website homepage while not logged in.
+
+- **Primary Sequence:**
+  
+  1. User sees a page with a random background image from Unsplash, and buttons to log in, register an account, and search for users or messages
+
+- **Primary Postconditions:** The user is on the splash page, and is able to login, create an account, or search for messages.
+
+- **Alternate Sequence:** Unsplash API is unable to provide an image.
+  
+  1. User sees the splash screen with a solid-color background instead of an image
