@@ -146,7 +146,7 @@
   
   1. A popup appears, prompting the user to enter some text into the search field
 
-1. Slpash page
+6. Slpash page
 - **Pre-condition:** User is not logged in.
 
 - **Trigger:** User visits the website homepage while not logged in.
