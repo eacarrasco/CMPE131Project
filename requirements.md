@@ -134,14 +134,15 @@ The follower to be messaged no longer follows the user
   
   1. A popup appears, prompting the user to enter some text into the search field
 
-6. Slpash page
+6. Splash page
 - **Pre-condition:** User is not logged in.
 
 - **Trigger:** User visits the website homepage while not logged in.
 
 - **Primary Sequence:**
   
-  1. User sees a page with a random background image from Unsplash, and buttons to log in, register an account, and search for users or messages
+  1. User navigates to the website homepage (typing URL into address bar, being redirected, etc.)
+  2. User sees a page with a random background image from Unsplash, and buttons to log in, register an account, and search for users or messages
 
 - **Primary Postconditions:** The user is on the splash page, and is able to login, create an account, or search for messages.
 
