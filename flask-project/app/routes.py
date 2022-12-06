@@ -11,8 +11,23 @@ from flask_login import logout_user
 
 @myapp_obj.route('/')
 def hello():
-    messages = Message.query.filter(User.username=='erich').all()
-    return render_template('home.html', messages=messages)
+    if current_user.is_authenticated:
+        messages = Message.query.filter(User.username=='erich').all()
+        return render_template('home.html', messages=messages)
+    else:
+        # user is not logged in, show default splash page instead
+        unsplash_access_key = {'Authorization': 'Client-ID xZxl5W67jLnaze7X0zMCWJeT5scsiMuwqsvGDCwFoZU'}
+        unsplash_parameters = {'collections': '11649432',
+                               'orientation': 'landscape'}
+        unsplash_url = f'https://api.unsplash.com/photos/random'
+        # r = requests.get(unsplash_url, params=unsplash_parameters, headers=unsplash_access_key).json()
+        r = {'urls': {
+            'raw': 'https://images.unsplash.com/photo-1543337212-8c58be380d9d?ixid=MnwzODUwNDd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njk5MjYxMzA&amp;ixlib=rb-4.0.3'
+        }}
+        # print(r)
+        # print(r.json())
+        return render_template('splash.html', image_url=r['urls']['raw'])
+
 
 @myapp_obj.route('/like-message/<int:id>/')
 def like(id):
@@ -60,13 +75,12 @@ def username(username):
 def message():
     if not current_user.is_authenticated:
         return redirect('/login')
-    
+
     current_form = MessageForm()
     if current_form.validate_on_submit():
         m = Message(contents=current_form.message.data,like_count=0,user_id=current_user.id)
         db.session.add(m)
         db.session.commit()
         return redirect('/')
-    
+
     return render_template('message.html', form=current_form)
-    
