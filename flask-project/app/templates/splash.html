@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block myContent %}
+<style>
+
+body {
+    height: 100vh;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#title {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+}
+
+#title button {
+    padding: 20px;
+    font-size: 2rem;
+}
+
+#login {
+    background-color: #fff;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+#register {
+    background-color: #444;
+    color: #fff;
+}
+</style>
+
+<div id="title">
+    <button id="login" onclick="location.href='/login/';">Login</button>
+    <br>
+    <button id="register"onclick="location.href='/register/';">Register</button>
+</div>
+
+<script>
+    let url = "{{ image_url }}" + "&w=" + screen.width;
+    console.log("image url is \n" + url);
+    document.body.style.backgroundImage = "url(" + url + ")";
+</script>
+{% endblock %}
