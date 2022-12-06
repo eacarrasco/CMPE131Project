@@ -75,9 +75,9 @@ The follower to be messaged no longer follows the user
   2. The system prompts the user to message another follower
 
 3. Like message
-- **Pre-condition:**
+- **Pre-condition:** User has messages and is logged in.
 
-- **Trigger:**
+- **Trigger:** User clicks heart next to message.
 
 - **Primary Sequence:**
   
