@@ -1,7 +1,7 @@
-from app import myapp_obj
+from app import myapp_obj,db
 from flask import render_template, redirect, flash
-from app.forms import LoginForm
-from app.models import User
+from app.forms import LoginForm,MessageForm
+from app.models import User,Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user
 from flask_login import login_required
@@ -11,10 +11,13 @@ from flask_login import logout_user
 
 @myapp_obj.route('/')
 def hello():
-    demo_messages = [{'user': 'Mario', 'contents': 'It\'s-a me, Mario!'},
-                     {'user': 'Luigi', 'contents': 'Yahoo!'},
-                     {'user': 'Goomba', 'contents': '...'}]
-    return render_template('home.html', messages=demo_messages)
+    messages = Message.query.filter(User.username=='erich').all()
+    return render_template('home.html', messages=messages)
+
+@myapp_obj.route('/like-message/<int:id>/')
+def like(id):
+    # toggle messages[id][liked]
+    return redirect('/')
 
 @myapp_obj.route('/logout')
 @login_required
@@ -52,3 +55,18 @@ def login():
 @myapp_obj.route('/user/<string:username>/')
 def username(username):
     return render_template('username.html', username=username)
+
+@myapp_obj.route('/message', methods=['POST', 'GET'])
+def message():
+    if not current_user.is_authenticated:
+        return redirect('/login')
+    
+    current_form = MessageForm()
+    if current_form.validate_on_submit():
+        m = Message(contents=current_form.message.data,like_count=0,user_id=current_user.id)
+        db.session.add(m)
+        db.session.commit()
+        return redirect('/')
+    
+    return render_template('message.html', form=current_form)
+    
