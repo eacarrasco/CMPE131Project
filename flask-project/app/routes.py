@@ -11,10 +11,15 @@ from flask_login import logout_user
 
 @myapp_obj.route('/')
 def hello():
-    demo_messages = [{'user': 'Mario', 'contents': 'It\'s-a me, Mario!'},
-                     {'user': 'Luigi', 'contents': 'Yahoo!'},
-                     {'user': 'Goomba', 'contents': '...'}]
+    demo_messages = [{'user': 'Mario', 'contents': 'It\'s-a me, Mario!', 'liked': False},
+                     {'user': 'Luigi', 'contents': 'Yahoo!', 'liked': True},
+                     {'user': 'Goomba', 'contents': '...', 'liked': False}]
     return render_template('home.html', messages=demo_messages)
+
+@myapp_obj.route('/like-message/<int:id>/')
+def like(id):
+    # toggle messages[id][liked]
+    return redirect('/')
 
 @myapp_obj.route('/logout')
 @login_required
