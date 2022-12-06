@@ -24,3 +24,16 @@ Atendees: John Clear, Gift Olatunji, Erich Carrasco
   - **John:** worked on writing use case for functional requirements 9, and 11. Will work on the splash page next.
 - Summarize group progress: We were able to write user case for the 6 functional requiremnts. We also will start writing code for each of our assigned functional requirement.
 
+### 2022/12/03 at 04:00 pm
+Atendees: John Clear, Gift Olatunji
+- Team updates (15min or less)
+  - **Gift:** worked on meeting updates and writing code for functional requirement 1 (Login). Will work on writing code for functional requirement 2 next 
+   - **John:** worked on the splash page. Will work on the next functional requirement next.
+- Summarize group progress: We were able to start writing code for each of our assigned functional requirements. We also will continue to write code for how to like messages, logout and such.
+
+### 2022/12/06 at 10:00 am
+Atendees: John Clear, Gift Olatunji, Erich Carrasco
+- Team updates (15min or less)
+  - **Gift:** worked on meeting updates and writing code for functional requirement 2 (Logout). Will work on writing code for functional requirement 3 next 
+   - **John:** worked on the splash page and API. Will work on the next functional requirement next.
+- Summarize group progress: We were able to continue writing code for each of our assigned functional requirements. We also will continue to write code for the rest of the requirements.
