@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block myContent %}
+    <h1>Your favorite messages</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <br>
+            <h2>{{message.user.username}}</h2>
+            <p>{{message.contents}}
+                <!--{% if message.liked %}
+                    <button type="button"><img src="https://cdn-icons-png.flaticon.com/512/1076/1076984.png" alt="flaticon.com heart closed" style="width:12px;height:12px"></button></p>
+                {% else %}
+                    <button type="button"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="flaticon.com heart open" style="width:12px;height:12px"></button></p>
+                {% endif %}-->
+        {% endfor %}
+    {% endif %}
+{% endblock %}
