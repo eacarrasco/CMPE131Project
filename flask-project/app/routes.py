@@ -13,7 +13,7 @@ from flask_login import logout_user
 @myapp_obj.route('/')
 def hello():
     if current_user.is_authenticated:
-        messages = Message.query.filter(User.username == 'erich').all()
+        messages = Message.query.filter(User.username == current_user.username).all()
         return render_template('home.html', messages=messages)
     else:
         # user is not logged in, show default splash page instead
@@ -21,13 +21,19 @@ def hello():
         unsplash_parameters = {'collections': '11649432',
                                'orientation': 'landscape'}
         unsplash_url = f'https://api.unsplash.com/photos/random'
-        r = requests.get(unsplash_url, params=unsplash_parameters, headers=unsplash_access_key).json()
-        # r = {'urls': {
-        #     'raw': 'https://images.unsplash.com/photo-1543337212-8c58be380d9d?ixid=MnwzODUwNDd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njk5MjYxMzA&amp;ixlib=rb-4.0.3'
-        # }}
+        # r = requests.get(unsplash_url, params=unsplash_parameters, headers=unsplash_access_key).json()
+        r = {'urls': {
+            'raw': 'https://images.unsplash.com/photo-1543337212-8c58be380d9d?ixid=MnwzODUwNDd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njk5MjYxMzA&amp;ixlib=rb-4.0.3'
+        }}
         # print(r)
         # print(r.json())
         return render_template('splash.html', image_url=r['urls']['raw'])
+
+@myapp_obj.route('/favorites/')
+def favorites():
+    if current_user.is_authenticated:
+        favorite_messages = User.favorite_messages
+        return render_template('favorites.html', messages=favorite_messages)
 
 
 @myapp_obj.route('/like-message/<int:id>/')
@@ -48,8 +54,6 @@ def login():
     current_form = LoginForm()
     # taking input from the user and doing somithing with it
     if current_form.validate_on_submit():
-        print(f'{current_form.username.data=}, {current_form.password.data=}, {current_form.remember_me.data=}')
-
         # search to make sure we have the user in our database
         user = User.query.filter_by(username=current_form.username.data).first()
 
@@ -61,16 +65,9 @@ def login():
 
         # login user
         login_user(user, remember=current_form.remember_me.data)
-        flash('quick way to debug')
-        flash('another quick way to debug')
         print(current_form.username.data, current_form.password.data)
         return redirect('/')
     return render_template('login.html', form=current_form)
-
-
-@myapp_obj.route('/user/<string:username>/')
-def username(username):
-    return render_template('username.html', username=username)
 
 
 @myapp_obj.route('/message', methods=['POST', 'GET'])

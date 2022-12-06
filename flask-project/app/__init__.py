@@ -14,9 +14,6 @@ myapp_obj.config.update(
 
 db = SQLAlchemy(myapp_obj)
 
-# with myapp_obj.app_context():
-#     db.create_all()
-
 login = LoginManager(myapp_obj)
 
 login.login_view = 'login'
