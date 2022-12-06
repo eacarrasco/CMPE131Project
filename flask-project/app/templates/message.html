@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block myContent %}
+<p>Send a Message</p>
+<form action="" method="POST" novalidate>
+	{{form.hidden_tag()}}
+	<p>{{form.message.label}} <br> {{form.message()}}</p>
+	<p>{{form.submit.label}} <br> {{form.submit()}}</p>
+</form>
+{% endblock %}
