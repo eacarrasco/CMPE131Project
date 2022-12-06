@@ -34,13 +34,13 @@ def like(id):
     # toggle messages[id][liked]
     return redirect('/')
 
-@myapp_obj.route('/logout')
+@myapp_obj.route('/logout/')
 @login_required
 def logout():
-    load_user(current_user)
+    logout_user()
     return redirect('/')
 
-@myapp_obj.route('/login', methods=['POST', 'GET'])
+@myapp_obj.route('/login/', methods=['POST', 'GET'])
 def login():
     current_form = LoginForm()
     # taking input from the user and doing somithing with it
@@ -54,7 +54,7 @@ def login():
         if user is None or not user.check_password(current_form.password.data):
             flash('Invalid password!')
             # if passwords don't match, send user to login again
-            return redirect('/login')
+            return redirect('/login/')
 
         # login user
         login_user(user, remember=current_form.remember_me.data)
