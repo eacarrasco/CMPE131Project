@@ -27,7 +27,7 @@ def hello():
         }}
         # print(r)
         # print(r.json())
-        return render_template('splash.html', image_url=r['urls']['raw'])
+        return render_template('splash.html', image_url=r['urls']['raw'], hidelogout = True)
 
 @myapp_obj.route('/favorites/')
 def favorites():
@@ -67,7 +67,9 @@ def login():
         login_user(user, remember=current_form.remember_me.data)
         print(current_form.username.data, current_form.password.data)
         return redirect('/')
-    return render_template('login.html', form=current_form)
+    parameters = {"form": current_form, "hidelogout": True}
+
+    return render_template('login.html', **parameters)
 
 
 @myapp_obj.route('/message', methods=['POST', 'GET'])
