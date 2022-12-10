@@ -17,7 +17,7 @@
 
 1. Only expected to work on Google Chrome and Firefox
 2. Each page should load in under 1 second
-3. Error rate if submitting new messages should be below 5%
+3. Splash page should be visually appealing to draw in potential users
 4. Website should be able to handle 100s of users
 
 ## Use Cases
