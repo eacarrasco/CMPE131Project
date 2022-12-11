@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block myContent %}
-    <h1>Welcome to the homepage</h1>
+    <h1>Welcome to {{username}}'s homepage</h1>
     {% if messages %}
         {% for message in messages %}
             <br>
@@ -13,4 +13,9 @@
                 {% endif %}-->
         {% endfor %}
     {% endif %}
+    <br><br><br>
+{% endblock %}
+
+{% block deleteaccountbutton %}
+    <button onclick="location.href='/deleteaccount/';" style="margin-left:auto;margin-right: 2rem;">Delete Account</button>
 {% endblock %}
