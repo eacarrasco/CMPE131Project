@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block myContent %}
+<p>This is the registration page</p>
+<form action="" method="POST" novalidate>
+	{{form.hidden_tag()}}
+	<p>{{form.username.label}} <br> {{form.username()}}</p>
+	<p>{{form.password.label}} <br> {{form.password()}}</p>
+	<p>{{form.submit.label}} <br> {{form.submit()}}</p>
+</form>
+{% endblock %}

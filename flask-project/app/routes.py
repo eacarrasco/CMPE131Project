@@ -1,7 +1,8 @@
+from sqlalchemy.exc import IntegrityError 
 import requests
 from app import myapp_obj, db
 from flask import render_template, redirect, flash
-from app.forms import LoginForm, MessageForm
+from app.forms import LoginForm, RegisterForm, MessageForm, DeleteAccountForm
 from app.models import User, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user
@@ -14,7 +15,7 @@ from flask_login import logout_user
 def hello():
     if current_user.is_authenticated:
         messages = Message.query.filter(User.username == current_user.username).all()
-        return render_template('home.html', messages=messages)
+        return render_template('home.html', messages=messages, username = current_user.username)
     else:
         # user is not logged in, show default splash page instead
         unsplash_access_key = {'Authorization': 'Client-ID xZxl5W67jLnaze7X0zMCWJeT5scsiMuwqsvGDCwFoZU'}
@@ -59,17 +60,61 @@ def login():
 
         # check user's password with what is saved on the database
         if user is None or not user.check_password(current_form.password.data):
-            flash('Invalid password!')
+            if user is None:
+                flash ('Invalid Username')
+            else:
+                flash('Invalid password!')
             # if passwords don't match, send user to login again
             return redirect('/login/')
 
         # login user
         login_user(user, remember=current_form.remember_me.data)
-        print(current_form.username.data, current_form.password.data)
         return redirect('/')
     parameters = {"form": current_form, "hidelogout": True}
 
     return render_template('login.html', **parameters)
+
+@myapp_obj.route('/register/', methods=['POST', 'GET'])
+def register():
+    current_form = RegisterForm()
+    # taking input from the user and doing somithing with it
+    if current_form.validate_on_submit():
+        try:
+            if len(current_form.password.data) == 0:
+                raise TypeError
+            user = User(username=current_form.username.data, password= generate_password_hash(current_form.password.data))
+
+            db.session.add(user)
+
+            db.session.commit()
+            flash('Account created successfully! Please Login..')
+            return redirect ('/login')
+        except IntegrityError:
+            flash('Username already exists!')
+        except TypeError:
+            flash('Password cannot be empty!!')
+        return redirect ('/register')
+    parameters = {"form": current_form, "hidelogout": True}
+
+    return render_template('register.html', **parameters)
+
+@myapp_obj.route('/deleteaccount/', methods=['POST', 'GET'])
+def deleteaccount():
+    if not current_user.is_authenticated:
+        return redirect('/login')
+
+    current_form = DeleteAccountForm()
+    if current_form.validate_on_submit():
+        if current_user.check_password(current_form.password.data):
+            db.session.delete(current_user)
+            db.session.commit()
+
+            return redirect('/register/')
+        flash('Incorrect Password!')
+        return redirect('/deleteaccount/')
+        
+
+    return render_template('deleteaccount.html',username = current_user.username, form=current_form)
 
 
 @myapp_obj.route('/message', methods=['POST', 'GET'])

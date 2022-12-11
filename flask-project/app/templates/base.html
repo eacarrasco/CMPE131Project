@@ -9,6 +9,7 @@
 			<button onclick="location.href='/logout/';" style="margin-left:auto;margin-right: 2rem;"
 			>Logout</button>
 		{% endif %}
+		{% block deleteaccountbutton %}{% endblock %}
 		{% with flashes = get_flashed_messages() %}
 		{% if flashes %}
 			<ul>
