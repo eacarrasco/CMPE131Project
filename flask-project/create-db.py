@@ -11,9 +11,10 @@ db.create_all()
 john = User(username='john', password='_')
 john.set_password('pass123')
 
-john_message = Message(contents='Hello, this is a test message', user_id=john.id)
+john_message = Message(contents='Hello, this is a test message.', user=john)
+john_favorite = Message(contents='Wow! My favorite Message!', user=john)
 
-john.favorite_messages.append(john_message)
+john.favorite_messages.append(john_favorite)
 
 db.session.add(john)
 db.session.add(john_message)
@@ -22,7 +23,7 @@ db.session.add(john_message)
 Gift = User(username='Gift', password='_')
 Gift.set_password('12345')
 
-gift_message = Message(contents='Hello, this is Gift', user_id=Gift.id)
+gift_message = Message(contents='Hello, this is Gift', user=Gift)
 
 Gift.favorite_messages.append(gift_message)
 
