@@ -1,8 +1,8 @@
-from sqlalchemy.exc import IntegrityError 
+from sqlalchemy.exc import IntegrityError
 import requests
 from app import myapp_obj, db
 from flask import render_template, redirect, flash
-from app.forms import LoginForm, RegisterForm, MessageForm, DeleteAccountForm
+from app.forms import LoginForm, RegisterForm, MessageForm, DeleteAccountForm, SearchForm
 from app.models import User, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user
@@ -14,8 +14,11 @@ from flask_login import logout_user
 @myapp_obj.route('/')
 def hello():
     if current_user.is_authenticated:
-        messages = Message.query.filter(User.username == current_user.username).all()
-        return render_template('home.html', messages=messages, username = current_user.username)
+        # messages = Message.query.filter_by(User.username = current_user.username).all()
+        messages = Message.query.filter_by(user_id=current_user.id).all()
+        print(current_user.id, User.query.filter_by(username='john').first().id)
+        print(messages)
+        return render_template('home.html', messages=messages, username=current_user.username)
     else:
         # user is not logged in, show default splash page instead
         unsplash_access_key = {'Authorization': 'Client-ID xZxl5W67jLnaze7X0zMCWJeT5scsiMuwqsvGDCwFoZU'}
@@ -28,12 +31,13 @@ def hello():
         }}
         # print(r)
         # print(r.json())
-        return render_template('splash.html', image_url=r['urls']['raw'], hidelogout = True)
+        return render_template('splash.html', image_url=r['urls']['raw'], hidelogout=True)
+
 
 @myapp_obj.route('/favorites/')
 def favorites():
     if current_user.is_authenticated:
-        favorite_messages = User.favorite_messages
+        favorite_messages = Message.query.filter(Message.users_who_favorite.any(id=current_user.id)).all()
         return render_template('favorites.html', messages=favorite_messages)
 
 
@@ -61,7 +65,7 @@ def login():
         # check user's password with what is saved on the database
         if user is None or not user.check_password(current_form.password.data):
             if user is None:
-                flash ('Invalid Username')
+                flash('Invalid Username')
             else:
                 flash('Invalid password!')
             # if passwords don't match, send user to login again
@@ -74,6 +78,7 @@ def login():
 
     return render_template('login.html', **parameters)
 
+
 @myapp_obj.route('/register/', methods=['POST', 'GET'])
 def register():
     current_form = RegisterForm()
@@ -82,21 +87,23 @@ def register():
         try:
             if len(current_form.password.data) == 0:
                 raise TypeError
-            user = User(username=current_form.username.data, password= generate_password_hash(current_form.password.data))
+            user = User(username=current_form.username.data,
+                        password=generate_password_hash(current_form.password.data))
 
             db.session.add(user)
 
             db.session.commit()
             flash('Account created successfully! Please Login..')
-            return redirect ('/login')
+            return redirect('/login')
         except IntegrityError:
             flash('Username already exists!')
         except TypeError:
             flash('Password cannot be empty!!')
-        return redirect ('/register')
+        return redirect('/register')
     parameters = {"form": current_form, "hidelogout": True}
 
     return render_template('register.html', **parameters)
+
 
 @myapp_obj.route('/deleteaccount/', methods=['POST', 'GET'])
 def deleteaccount():
@@ -112,12 +119,11 @@ def deleteaccount():
             return redirect('/register/')
         flash('Incorrect Password!')
         return redirect('/deleteaccount/')
-        
 
-    return render_template('deleteaccount.html',username = current_user.username, form=current_form)
+    return render_template('deleteaccount.html', username=current_user.username, form=current_form)
 
 
-@myapp_obj.route('/message', methods=['POST', 'GET'])
+@myapp_obj.route('/message/', methods=['POST', 'GET'])
 def message():
     if not current_user.is_authenticated:
         return redirect('/login')
@@ -130,3 +136,20 @@ def message():
         return redirect('/')
 
     return render_template('message.html', form=current_form)
+
+
+@myapp_obj.route('/search/', methods=['POST', 'GET'])
+def search():
+    if not current_user.is_authenticated:
+        return redirect('/login')
+
+    current_form = SearchForm()
+    if current_form.validate_on_submit():
+        # TODO filter to only messages from followed users
+        if current_form.mode.data == 'Users':
+            results = User.query.filter(User.username.contains(current_form.query.data)).all()
+        else:
+            results = Message.query.filter(Message.contents.contains(current_form.query.data)).all()
+        return render_template('search.html', form=current_form, results=results)
+
+    return render_template('search.html', form=current_form)

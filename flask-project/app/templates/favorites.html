@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block myContent %}
     <h1>Your favorite messages</h1>
+    <button onclick="location.href='/search/';">Search</button>
     {% if messages %}
         {% for message in messages %}
             <br>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField
 from flask_login import current_user
 
 class LoginForm(FlaskForm):
@@ -20,3 +20,9 @@ class DeleteAccountForm(FlaskForm):
 class MessageForm(FlaskForm):
     message = StringField('Message')
     submit = SubmitField('Send')
+
+
+class SearchForm(FlaskForm):
+    query = StringField('Search Query')
+    mode = RadioField('Search for: ', choices=[('Users', 'Search for users'), ('Messages', 'Search for messages')])
+    submit = SubmitField('Search')
