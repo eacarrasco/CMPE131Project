@@ -4,14 +4,12 @@
 2. Logout                                                       - @giftolatunji
 3. Create new account                                           - @giftolatunji
 4. delete account                                               - @giftolatunji
-5. User home page (user can see messages of users they follow)  - @eacarrasco
-6. Send message to followers                                    - @eacarrasco
-7. Like message                                                 - @eacarrasco
-8. Follow User                                                  - @eacarrasco
-9. Search for user                                              - @LofiTurtle
-10. Search messages                                             - @LofiTurtle
-11. Splash page                                                 - @LofiTurtle
-12. Connect with any external API                               - @LofiTurtle
+5. User home page (users can see all messages)                  - @eacarrasco
+6. Send messages                                                - @eacarrasco
+7. Search for user                                              - @LofiTurtle
+8. Search messages                                              - @LofiTurtle
+9. Splash page                                                  - @LofiTurtle
+10. Connect with any external API                               - @LofiTurtle
 
 ## Non-functional Requirements
 
@@ -46,7 +44,7 @@ System displays the home page
   1. The system displays an error message
   2. The system directs the User to the login page where there is a create an account button
 
-2. Send message to followers
+2. Send message
 - **Pre-condition:**
 The user has followers
 - **Trigger:**
@@ -74,43 +72,44 @@ The follower to be messaged no longer follows the user
   1. The system displays a prompt that the follower is no longer available to be messaged
   2. The system prompts the user to message another follower
 
-3. Like message
-- **Pre-condition:** User has messages and is logged in.
+3. Search Messages
+- **Pre-condition:** User is logged in.
 
-- **Trigger:** User clicks heart next to message.
-
-- **Primary Sequence:**
-  
-  1. User clicks messages
-  2. User sends message or recieves message (See Use Case "Send message to followers")
-  3. User clicks heart next to message
-
-- **Primary Postconditions:** A message is liked.
-
-- **Alternate Sequence:**
-  
-  1. User has no messages
-
-    a. There will be no heart to click
-
-4. Follow User
-- **Pre-condition:** User is logged in and has searched for a user.
-
-- **Trigger:** User clicks the Follow button on another user's homepage.
+- **Trigger:** User clicks search on home page.
 
 - **Primary Sequence:**
   
-  1. User searches for another user (See use case "Search for User")
-  2. User clicks on desired user and is directed to their homepage
-  3. User clicks the Follow button on their homepage
+  1. User clicks search
+  2. User types search query
+  3. User chooses to search for messages
+  4. User submits search query
+  5. Page displays search results
 
-- **Primary Postconditions:** User's following list is updated
+- **Primary Postconditions:** Page displays search results.
 
 - **Alternate Sequence:**
   
-  1. Search for user that does not exist.
+  1. There are no messages that fit the query.
 
-    a. A blank page is shown.
+    a. Page displays no messages were found.
+
+4. Connect with any external API
+- **Pre-condition:** User is not logged in.
+
+- **Trigger:** User visits home page while not logged in.
+
+- **Primary Sequence:**
+  
+  1. User visits home page.
+  2. After a delay for loading, user sees background image from external source.
+
+- **Primary Postconditions:** Page has background image.
+
+- **Alternate Sequence:**
+  
+  1. Image does not load.
+
+    a. User sees white background.
 
 5. Search for user
 - **Pre-condition:** Viewing the splash screen or home page.

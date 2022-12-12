@@ -4,24 +4,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import login
 from flask_login import UserMixin
 
-user_favorite = db.Table('favorites',
-                         db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-                         db.Column('message_id', db.Integer, db.ForeignKey('message.id'), primary_key=True)
-                         )
-user_following = db.Table('following',
-                          db.Column('follower_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-                          db.Column('following_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
-                          )
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True)
     password = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(32), unique=True)
-    favorite_messages = db.relationship('Message', secondary=user_favorite, lazy='subquery',
-                                        backref=db.backref('users_who_favorite', lazy=True))
-    following = None
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
