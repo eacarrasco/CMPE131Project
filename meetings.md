@@ -37,3 +37,17 @@ Atendees: John Clear, Gift Olatunji, Erich Carrasco
   - **Gift:** worked on meeting updates and writing code for functional requirement 2 (Logout). Will work on writing code for functional requirement 3 next 
    - **John:** worked on the splash page and API. Will work on the next functional requirement next.
 - Summarize group progress: We were able to continue writing code for each of our assigned functional requirements. We also will continue to write code for the rest of the requirements.
+
+### 2022/12/10 at 03:00 pm
+Attendees: John Clear, Gift Olatunji
+- Team updates (15min or less)
+  - **Gift:** Finished 2 functional requirements: "Create New Account" and "Delete Account". Also revised parts of `requirements.md`.
+   - **John:** Assisted Gift with finishing these functional requirements. Did research into database queries in preparation for completing the "Search for users" and "Search for messages" functional requirements.
+- Summarize group progress: We were able to make good progress towards completing our functional requirements. We completed 2, and made progress on completing 2 more.
+
+### 2022/12/12 at 02:30 pm
+Attendees: John Clear, Erich Carrasco
+- Team updates (15min or less)
+  - **Erich:** Reevaluated which of the remaining functional requirements we wanted to complete. Finished the "Send message" functional requirement. Cleaned up and added comments to the code. Finished writing the paper on ethical implications.
+   - **John:** Also helped reevaluate which of the remaining functional requirements we wanted to complete. Assisted Erich with finishing the "send message" functional requirement, and with completing the paper on ethical implications. 
+- Summarize group progress: We finished all the functional requirements we needed to, the 4 mandatory ones and 6 others. We also finished writing the ethics paper, and made a plan for how we would finish up the readme before the deadline.

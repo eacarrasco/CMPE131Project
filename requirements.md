@@ -28,7 +28,7 @@ User selects login button
 - **Primary Sequence:**
   
   1. System prompts the user to enter email address and password information
-  2. User enters an email address assosciated with their account and password to access it
+  2. User enters an email address associated with their account and password to access it
   3. System checks with database if it is correct username and password
   4. System allows the user to login and shows the home page. 
 
@@ -112,26 +112,26 @@ The follower to be messaged no longer follows the user
     a. User sees white background.
 
 5. Search for user
-- **Pre-condition:** Viewing the splash screen or home page.
+- **Pre-condition:** Logged in and viewing the home page.
 
-- **Trigger:** User selects the search field.
+- **Trigger:** User selects the search.
 
 - **Primary Sequence:**
   
   1. User inputs some text into the search box
-  2. User selects the “Search users” box from a radio menu (as opposed to the “search messages” box)
+  2. User selects the “Search users” option from a radio menu (as opposed to the “search messages” option)
   3. User selects the search button, or presses Enter on the keyboard
-  4. User is redirected to a page where profiles whose usernames contain the text sequence entered by the user are listed
+  4. User is shown a list of usernames containing the text sequence they entered
 
 - **Primary Postconditions:** System displays the list of search results.
 
 - **Alternate Sequence:** The user enters text that does not match any username.
   
-  1. User is redirected to a page displaying an error message that no users were found
+  1. User is shown an error message stating that no users were found
 
 - **Alternate Sequence:** The user does not enter text before selecting search.
   
-  1. A popup appears, prompting the user to enter some text into the search field
+  1. The page does not change, and the user has the opportunity to enter a search term 
 
 6. Splash page
 - **Pre-condition:** User is not logged in.
@@ -141,9 +141,9 @@ The follower to be messaged no longer follows the user
 - **Primary Sequence:**
   
   1. User navigates to the website homepage (typing URL into address bar, being redirected, etc.)
-  2. User sees a page with a random background image from Unsplash, and buttons to log in, register an account, and search for users or messages
+  2. User sees a page with a random background image from Unsplash, and buttons to log in and register an account.
 
-- **Primary Postconditions:** The user is on the splash page, and is able to login, create an account, or search for messages.
+- **Primary Postconditions:** The user is on the splash page, and is able to login and create an account.
 
 - **Alternate Sequence:** Unsplash API is unable to provide an image.
   
